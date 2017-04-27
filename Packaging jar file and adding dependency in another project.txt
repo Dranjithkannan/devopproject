@@ -1,0 +1,87 @@
+Create maven quickstart project
+------------------------
+TemperatureConversion
+======================
+group-id:com.niit
+artifact-id:temperatureconversion
+
+App.java
+========
+package com.niit.temperatureconversion;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+        System.out.println(TempConversion.farenheitToCelcius(70));
+        System.out.println(TempConversion.celciusToFarenheit(67));
+    }
+}
+
+
+TempConversion.java
+===================
+package com.niit.temperatureconversion;
+
+public class TempConversion {
+public static double farenheitToCelcius(double farenheit){
+	return (farenheit - 32)*5/9;
+}
+public static double celciusToFarenheit(double celcius){
+	return (celcius * 9/5)+32;
+}
+}
+
+
+To package into jar file
+========================
+Right click on your project ->  Run as Maven Build -> Type "clean install package" in goals
+
+Check .m2 repository folder
+===========================
+com/niit/temperatureconversion/[name of the jar file]
+
+Create another project, may be in different workspace, to use this jar file
+============================================================================
+1. Create TempConversionUser quickstart project
+2. Add the dependency in pom.xml file as shown below
+<dependency>
+  <groupId>com.niit</groupId>
+  <artifactId>temperatureconversion</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+
+This has to be added in between <dependencies> tag
+
+3. Modify App.java in this project as shown below
+
+package com.niit.SampleTemperatureConversion;
+
+import com.niit.temperatureconversion.TempConversion;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+        System.out.println(TempConversion.celciusToFarenheit(123));
+    }
+}
+
+
+
+
+
+
+
+
+
